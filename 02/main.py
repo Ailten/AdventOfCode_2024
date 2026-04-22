@@ -10,7 +10,7 @@ def readInput(path='02\\input.txt'):
         for l in f:
             yield l.strip()
 
-def isLineValid(line: list) -> bool:
+def isLineValid(line: list) -> int:
     values = re.findall('[0-9]{1,}', line)
     values = [ int(e) for e in values ]
     last_element = values[0]
@@ -21,15 +21,17 @@ def isLineValid(line: list) -> bool:
         current_is_increase = last_element > e
 
         # check all increase (or not).
-        if is_increasing ^ current_is_increase:
-            return False
+        if is_increasing != current_is_increase:
+            return 1
 
         dif = abs(dif)
-        if dif < 1 or dif > 3:
-            return False
+        if dif == 0 or dif > 4:
+            return 2
 
-    return True
+    return 0
 
 l = list(readInput())
-l_valide = len([ None for line in l if isLineValid(line)])
+l_valide = len([ f'{line} -> {isLineValid(line)}' for line in l if isLineValid(line) == 0 ])
 print(l_valide)
+
+# 3 ? x
