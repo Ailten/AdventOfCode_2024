@@ -1,8 +1,8 @@
 
 import re
 
-# exo 1:
-# in a list of paire int, arange min left with min right and take the dif.
+# exo 1 (p2):
+# take the left number one by one, and sum the amount of time it figure theme self on right list.
 
 # read data.
 def readInput(path='01\\input.txt'):
@@ -12,14 +12,10 @@ def readInput(path='01\\input.txt'):
 
 l = list(readInput())
 left_int = [ int(re.search('^[0-9]{1,}', e).group(0)) for e in l ]
-left_int.sort()
 right_int = [ int(re.search('[0-9]{1,}$', e).group(0)) for e in l ]
-right_int.sort()
+
 sum_int = 0
-for i in range(0, len(l)):
-    sum_int += abs(right_int[i] -  left_int[i])
-
-
+for li in left_int:
+    sum_int += len([ None for ri in right_int if ri == li ]) * li
 
 print(sum_int)
-
