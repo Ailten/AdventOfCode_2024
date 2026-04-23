@@ -1,4 +1,5 @@
 import re
+import math
 
 # exo 2:
 # you have a data, many line of many digit deparate by space (lvls).
@@ -25,13 +26,14 @@ def isLineValid(line: list) -> int:
             return 1
 
         dif = abs(dif)
-        if dif == 0 or dif > 4:
+        if dif < 1 or dif > 3:
             return 2
 
     return 0
 
 l = list(readInput())
-l_valide = len([ f'{line} -> {isLineValid(line)}' for line in l if isLineValid(line) == 0 ])
-print(l_valide)
+l = l[:6]  # FIXME: first row return "gap over range" but it should return "decrease not allow"
+l_valide = ([ f'{line} -> {isLineValid(line)}' for line in l ])  # if isLineValid(line) == 0
+print('\n'.join(l_valide))
 
 # 3 ? x
