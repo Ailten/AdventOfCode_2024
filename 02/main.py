@@ -15,11 +15,11 @@ def isLineValid(line: list) -> int:
     values = re.findall('[0-9]{1,}', line)
     values = [ int(e) for e in values ]
     last_element = values[0]
+    is_increasing = values[0] < values[1]
     del values[0]
-    is_increasing = values[0] > values[1]
     for e in values:
         dif = e - last_element
-        current_is_increase = last_element > e
+        current_is_increase = last_element < e
 
         # check all increase (or not).
         if is_increasing != current_is_increase:
@@ -28,12 +28,11 @@ def isLineValid(line: list) -> int:
         dif = abs(dif)
         if dif < 1 or dif > 3:
             return 2
+        
+        last_element = e
 
     return 0
 
 l = list(readInput())
-l = l[:6]  # FIXME: first row return "gap over range" but it should return "decrease not allow"
-l_valide = ([ f'{line} -> {isLineValid(line)}' for line in l ])  # if isLineValid(line) == 0
-print('\n'.join(l_valide))
-
-# 3 ? x
+l_valide = len([ None for line in l if isLineValid(line) == 0])
+print(l_valide)
