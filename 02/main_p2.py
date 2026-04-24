@@ -24,7 +24,7 @@ def isLineValid(line: list, is_has_jocker: bool=False) -> int:
         # check all increase (or not).
         if is_increasing != current_is_increase:
             if is_has_jocker:
-                if i == 1 and isLineValid(line[1:]) != 0:
+                if i == 1 and isLineValid(line[1:]) == 0:
                     return 0
                 is_has_jocker = False
                 continue
@@ -33,7 +33,7 @@ def isLineValid(line: list, is_has_jocker: bool=False) -> int:
         dif = abs(dif)
         if dif < 1 or dif > 3:
             if is_has_jocker:
-                if i == 1 and isLineValid(line[1:]) != 0:
+                if i == 1 and isLineValid(line[1:]) == 0:
                     return 0
                 is_has_jocker = False
                 continue
@@ -44,6 +44,16 @@ def isLineValid(line: list, is_has_jocker: bool=False) -> int:
     return 0
 
 l = list(readInput())
+l = [
+    #'1 1 2 3 4 5',
+    #'1 2 3 4 5 5',
+    #'5 1 2 3 4 5',
+    '1 4 3 2 1',  # error.
+    #'1 6 7 8 9',
+    #'1 2 3 4 3',
+    #'9 8 7 6 7',
+    #'7 10 8 10 11'
+]
 l_valide = len([ None for line in l if isLineValid(line, True) == 0])
 print(l_valide)
 
@@ -51,3 +61,4 @@ print(l_valide)
 # 373 to low
 # 998 to height
 # 764 to height  # FIXME, still not valide.
+# 375 (?)
