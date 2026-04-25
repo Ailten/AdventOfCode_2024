@@ -32,10 +32,21 @@ def compareTwoNum(a, b, rules) -> bool:
 
 
 l = readInput()
+l = [
+    [(1, 2), (2, 3), (3, 4)],
+    [
+        [1,3,2],
+        [3,1,2],
+        [2,1,3],
+    ]
+]
 rules = l[0]
 lines = l[1]
 total = 0
 for li in lines:
+        
+    print('--')
+    print(li)
 
     while True:
 
@@ -48,6 +59,8 @@ for li in lines:
 
         if not is_a_change:
             break
+        
+    print(li)
 
     # get middle line.
     total += li[len(li) // 2]
@@ -56,6 +69,9 @@ print(total)
 
 
 # 10436  (x) to height
+
+# TODO: re create a list of "ordered value" based on rules, and use it as rules, instead of picking the exact rules array.
+# to catch the index value of eatch num in the array ref.
 
 
 
